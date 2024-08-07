@@ -54,7 +54,7 @@ void	decrement_test(std::string name, int grade)
 
 int	main()
 {
-	Log::nl("Constructor Test", CYAN);
+	Log::nl("Bureaucrat Constructor Test", CYAN);
 	{
 		construct_test("Adam", 0);
 		construct_test("Bob", 1);
@@ -62,13 +62,13 @@ int	main()
 		construct_test("Dan", 151);
 	}
 	Log::nl();
-	Log::nl("Increment Test", CYAN);
+	Log::nl("Bureaucrat Increment Test", CYAN);
 	{
 		increment_test("Elon", 1);
 		increment_test("Foo", 150);
 	}
 	Log::nl();
-	Log::nl("Decrement Test", CYAN);
+	Log::nl("Bureaucrat Decrement Test", CYAN);
 	{
 		decrement_test("George", 1);
 		decrement_test("Heren", 150);
