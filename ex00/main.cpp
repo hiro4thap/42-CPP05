@@ -14,11 +14,7 @@ void	construct_test(std::string name, int grade)
 		Bureaucrat	bureaucrat(name, grade);
 		std::cout << bureaucrat << "\n";
 	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		Log::nl(e.what(), RED);
-	}
-	catch (Bureaucrat::GradeTooLowException &e)
+	catch (std::exception &e)
 	{
 		Log::nl(e.what(), RED);
 	}
@@ -34,11 +30,7 @@ void	increment_test(std::string name, int grade)
 		bureaucrat.incrementGrade();
 		std::cout << bureaucrat << "\n";
 	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		Log::nl(e.what(), RED);
-	}
-	catch (Bureaucrat::GradeTooLowException &e)
+	catch (std::exception &e)
 	{
 		Log::nl(e.what(), RED);
 	}
@@ -54,11 +46,7 @@ void	decrement_test(std::string name, int grade)
 		bureaucrat.decrementGrade();
 		std::cout << bureaucrat << "\n";
 	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		Log::nl(e.what(), RED);
-	}
-	catch (Bureaucrat::GradeTooLowException &e)
+	catch (std::exception &e)
 	{
 		Log::nl(e.what(), RED);
 	}
