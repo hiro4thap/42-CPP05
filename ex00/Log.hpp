@@ -22,7 +22,7 @@ public:
 	static void out(const int number, std::string color = NONE);
 	static void out(const double number, std::string color = NONE);
 	static void out(const float number, std::string color = NONE);
-	static void nl(const std::string &message, std::string color = NONE);
+	static void nl(const std::string &message = "", std::string color = NONE);
 	static void nl(const int number, std::string color = NONE);
 	static void nl(const double number, std::string color = NONE);
 	static void nl(const float number, std::string color = NONE);
