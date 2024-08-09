@@ -4,9 +4,6 @@
 # include "Bureaucrat.hpp"
 # include <iomanip>
 
-# define TOO_LOW_TO_SET 0
-# define TOO_LOW_TO_SIGN 1
-
 class	Bureaucrat;
 
 class	Form
@@ -34,10 +31,10 @@ public:
 	class	GradeTooLowException : public std::exception
 	{
 	public:
-		GradeTooLowException(const int exception_code);
+		GradeTooLowException(const int grade);
 		const char 		*what() const throw();
 	private:
-		const int		_exception_code;
+		const int		_attempt_grade;
 	};
 
 private:

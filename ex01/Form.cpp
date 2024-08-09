@@ -20,8 +20,10 @@ Form::Form(const Form &rhs):
 {
 	if (_grade_to_sign < 1 || _grade_to_execute < 1)
 		throw GradeTooHighException();
-	else if (150 < _grade_to_execute || 150 <_grade_to_execute)
-		throw GradeTooLowException(TOO_LOW_TO_SET);
+	else if (150 < _grade_to_sign)
+		throw GradeTooLowException(_grade_to_sign);
+	else if (150 <_grade_to_execute)
+		throw GradeTooLowException(_grade_to_execute);
 }
 
 Form	&Form::operator=(const Form &rhs)
@@ -39,8 +41,10 @@ Form::Form(const std::string name, const int grade_to_sign, const int grade_to_e
 {
 	if (_grade_to_sign < 1 || _grade_to_execute < 1)
 		throw GradeTooHighException();
-	else if (150 < _grade_to_sign || 150 <_grade_to_execute)
-		throw GradeTooLowException(TOO_LOW_TO_SET);
+	else if (150 < _grade_to_sign)
+		throw GradeTooLowException(_grade_to_sign);
+	else if (150 <_grade_to_execute)
+		throw GradeTooLowException(_grade_to_execute);
 }
 
 const std::string	&Form::getName() const
@@ -72,7 +76,7 @@ void	Form::beSigned(const Bureaucrat &bureaucrat)
 	}
 	else if (_grade_to_sign < bureaucrat.getGrade())
 	{
-		throw GradeTooLowException(TOO_LOW_TO_SIGN);
+		throw GradeTooLowException(bureaucrat.getGrade());
 	}
 	_is_signed = true;
 }
@@ -86,25 +90,24 @@ const char 		*Form::GradeTooHighException::what() const throw()
 	return "Grade cannot be greater than 1";
 }
 
-Form::GradeTooLowException::GradeTooLowException(const int exception_code)
-	:_exception_code(exception_code)
+Form::GradeTooLowException::GradeTooLowException(const int grade)
+	:_attempt_grade(grade)
 {
 }
 
 const char 		*Form::GradeTooLowException::what() const throw()
 {
-	if (_exception_code == TOO_LOW_TO_SET)
+	if (150 < _attempt_grade)
 		return "Grade cannot be less than 150";
-	if (_exception_code == TOO_LOW_TO_SIGN)
-		return "Grade is too low to sign form";
-	return "Grade is too low";
+	else
+		return "Grade is too low to sign this form";
 }
 
 std::ostream	&operator<<(std::ostream &os, Form &f)
 {
-	const std::string status = f.getIsSigned() ? "Signed  " : "Unsinged";
+	const std::string status = f.getIsSigned() ? "  Signed" : "Unsinged";
 	return (os << f.getName() << ": " 
 			<< status << ", "
-			<< "GradeToSign: " << f.getGradeToSign() << ", "
-			<< "GradeToExecute: " << f.getGradeToExecute());
+			<< "SignGrade: " << f.getGradeToSign() << ", "
+			<< "ExecuteGrade: " << f.getGradeToExecute());
 }

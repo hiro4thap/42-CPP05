@@ -31,6 +31,11 @@ void	form_signed_test(const Bureaucrat &b, std::string name, const int grade_to_
 		Log::out(" -> ", NONE);
 		form.beSigned(b);
 		std::cout << form << "\n";
+		Log::nl(" attempt to be signed again", YELLOW);
+		Log::out(" -> ", NONE);
+		form.beSigned(b);
+		Log::out(" -> ", NONE);
+		std::cout << form << "\n";
 	}
 	catch (std::exception &e)
 	{
@@ -77,7 +82,7 @@ int	main()
 	}
 	Log::nl();
 	Log::nl("Bureaucrat Sign Test", CYAN);
-	Form form("Sample-Form", 10, 20);
+	Form form("Sample", 10, 20);
 	std::cout << CYAN << "* " << form << "\n";
 	{
 		bureaucrat_sign_test(form, "Jason", 11);
