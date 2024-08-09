@@ -55,18 +55,21 @@ void	Bureaucrat::decrementGrade()
 
 void	Bureaucrat::signForm(Form &form) const
 {
-	if (form.getIsSigned())
+	try
+	{
+		form.beSigned(*this);
+		std::cout << _name << " signed " << form.getName() << "\n";
+	}
+	catch (Form::AlreadySignedException &e)
 	{
 		std::cout << _name << " couldn't sign " << form.getName() << " because the form is already signed" << "\n";
-		return ;
+		throw;
 	}
-	else if (form.getGradeToSign() < _grade)
+	catch (Form::GradeTooLowException &e)
 	{
 		std::cout << _name << " couldn't sign " << form.getName() << " because the grade is too low" << "\n";
-		return ;
+		throw;
 	}
-	form.beSigned(*this);
-	std::cout << _name << " signed " << form.getName() << "\n";
 }
 
 Bureaucrat::GradeTooHighException::GradeTooHighException()

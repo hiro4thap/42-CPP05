@@ -56,6 +56,7 @@ void	bureaucrat_sign_test(Form &f, std::string name, const int grade)
 	}
 	catch (std::exception &e)
 	{
+		Log::out(" -> ", NONE);
 		Log::nl(e.what(), RED);
 	}
 }

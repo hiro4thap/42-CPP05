@@ -37,6 +37,13 @@ public:
 		const int		_attempt_grade;
 	};
 
+	class	AlreadySignedException : public std::exception
+	{
+	public:
+		AlreadySignedException();
+		const char 		*what() const throw();
+	};
+
 private:
 	const std::string	_name;
 	bool				_is_signed;
