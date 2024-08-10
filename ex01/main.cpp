@@ -22,27 +22,6 @@ void	form_construct_test(std::string name, const int grade_to_sign, const int gr
 	}
 }
 
-void	form_signed_test(const Bureaucrat &b, std::string name, const int grade_to_sign, const int grade_to_execute)
-{
-	Form form(name, grade_to_sign, grade_to_execute);
-	try
-	{
-		std::cout << YELLOW << form << NONE << "\n";
-		Log::out(" -> ", NONE);
-		form.beSigned(b);
-		std::cout << form << "\n";
-		Log::nl(" attempt to be signed again", YELLOW);
-		Log::out(" -> ", NONE);
-		form.beSigned(b);
-		Log::out(" -> ", NONE);
-		std::cout << form << "\n";
-	}
-	catch (std::exception &e)
-	{
-		Log::nl(e.what(), RED);
-	}
-}
-	
 void	bureaucrat_sign_test(Form &f, std::string name, const int grade)
 {
 	const Bureaucrat bureaucrat(name, grade);
@@ -71,15 +50,6 @@ int	main()
 		form_construct_test("D", 151, 10);
 		form_construct_test("E", 10, 0);
 		form_construct_test("F", 10, 151);
-	}
-	Log::nl();
-	Log::nl("Form Signed Test", CYAN);
-	Bureaucrat bureaucrat("Bure", 10);
-	std::cout << CYAN << "* " << bureaucrat << "\n";
-	{
-		form_signed_test(bureaucrat, "G", 9 , 9);
-		form_signed_test(bureaucrat, "H", 9 , 10);
-		form_signed_test(bureaucrat, "I", 10, 9);
 	}
 	Log::nl();
 	Log::nl("Bureaucrat Sign Test", CYAN);
